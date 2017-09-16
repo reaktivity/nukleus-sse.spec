@@ -42,7 +42,7 @@ public class DataIT
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveEmptyString() throws Exception
+    public void shouldReceiveEmptyMessage() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -54,7 +54,7 @@ public class DataIT
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveNonEmptyString() throws Exception
+    public void shouldReceiveNonEmptyMessage() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");

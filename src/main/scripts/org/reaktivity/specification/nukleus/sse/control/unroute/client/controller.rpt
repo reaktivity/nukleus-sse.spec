@@ -19,7 +19,7 @@ property newClientConnectRef ${nuklei:newReferenceId()} # external scope
 
 property nukleiUR020101C ${nuklei:directory("target/nukleus-itests").controlCapacity(1024, 1024)}
 
-property controlUR020101C ${nukleiUR020101C.control("ws")}
+property controlUR020101C ${nukleiUR020101C.control("sse")}
 
 connect await ROUTED_CLIENT
         "agrona://stream/bidirectional"

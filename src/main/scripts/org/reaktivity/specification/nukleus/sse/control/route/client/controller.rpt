@@ -18,7 +18,7 @@ property newClientConnectRef ${nuklei:newReferenceId()} # external scope
 
 property nukleiRG010101C ${nuklei:directory("target/nukleus-itests").controlCapacity(1024, 1024)}
 
-property controlRG010101C ${nukleiRG010101C.control("ws")}
+property controlRG010101C ${nukleiRG010101C.control("sse")}
 
 connect "agrona://stream/bidirectional"
         option agrona:reader ${agrona:broadcastReceiver(controlRG010101C.controller)}

@@ -34,8 +34,9 @@ connected
 
 read closed
 
+write nukleus:begin.ext ${http:header(":status", "200")}
 write nukleus:begin.ext ${http:header("content-type", "text/event-stream")}
-write nukleus:begin.ext ${http:header("cache-control", "no-cache")}
+write flush
 
 write "data:Hello, world\n"
 write "id:105\n"
