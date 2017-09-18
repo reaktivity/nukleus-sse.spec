@@ -27,10 +27,10 @@ import org.kaazing.k3po.junit.annotation.ScriptProperty;
 import org.kaazing.k3po.junit.annotation.Specification;
 import org.kaazing.k3po.junit.rules.K3poRule;
 
-public class IdIT
+public class HandshakeIT
 {
     private final K3poRule k3po = new K3poRule()
-        .addScriptRoot("scripts", "org/reaktivity/specification/sse/id");
+        .addScriptRoot("scripts", "org/reaktivity/specification/sse/handshake");
 
     private final TestRule timeout = new DisableOnDebug(new Timeout(10, SECONDS));
 
@@ -39,46 +39,10 @@ public class IdIT
 
     @Test
     @Specification({
-        "${scripts}/empty/request",
-        "${scripts}/empty/response" })
+        "${scripts}/last.event.id/request",
+        "${scripts}/last.event.id/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveEmptyId() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
-
-    @Test
-    @Specification({
-        "${scripts}/non.empty/request",
-        "${scripts}/non.empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveNonEmptyId() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
-
-    @Test
-    @Specification({
-        "${scripts}/invalid.utf8/request",
-        "${scripts}/invalid.utf8/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldRejectIdWithInvalidUTF8() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
-
-    @Test
-    @Specification({
-        "${scripts}/initial.whitespace/request",
-        "${scripts}/initial.whitespace/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveIdWithInitialWhitespace() throws Exception
+    public void shouldReceiveLastEventId() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
