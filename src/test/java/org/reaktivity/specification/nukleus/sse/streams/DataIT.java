@@ -60,4 +60,28 @@ public class DataIT
         k3po.notifyBarrier("ROUTED_SERVER");
         k3po.finish();
     }
+
+    @Test
+    @Specification({
+        "${scripts}/invalid.utf8/request",
+        "${scripts}/invalid.utf8/response" })
+    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    public void shouldResetAfterReceivingInvalidUTF8Message() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
+        "${scripts}/initial.whitespace/request",
+        "${scripts}/initial.whitespace/response" })
+    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    public void shouldReceiveMessageWithInitialWhitespace() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
 }
