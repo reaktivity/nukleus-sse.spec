@@ -15,25 +15,29 @@
 #
 
 property newServerAcceptRef  ${nuklei:newReferenceId()} # external
-property serverTransport "nukleus://target/streams/sse"
 
-accept ${serverTransport}
-  option nukleus:route  ${newServerAcceptRef}
+connect await ROUTED_SERVER
+        "nukleus://sse/streams/source"
+  option nukleus:route ${newServerAcceptRef}
   option nukleus:window 8192
   option nukleus:transmission "half-duplex"
-accepted
 
-read nukleus:begin.ext ${http:header(":scheme", "http")}
-read nukleus:begin.ext ${http:header(":method", "GET")}
-read nukleus:begin.ext ${http:header(":path", "/events/a8b7c6d5")}
-read nukleus:begin.ext ${http:header(":authority", "localhost:8080")}
-read nukleus:begin.ext ${http:header("accept", "text/event-stream")}
-read nukleus:begin.ext ${http:header("last-event-id", "100")}
+write nukleus:begin.ext ${http:header(":scheme", "http")}
+write nukleus:begin.ext ${http:header(":method", "GET")}
+write nukleus:begin.ext ${http:header(":path", "/events/a8b7c6d5")}
+write nukleus:begin.ext ${http:header(":authority", "localhost:8080")}
+write nukleus:begin.ext ${http:header("accept", "text/event-stream")}
+write nukleus:begin.ext ${http:header("last-event-id", "100")}
 
 connected
 
-read closed
+write close
 
-write nukleus:begin.ext ${http:header(":status", "200")}
-write nukleus:begin.ext ${http:header("content-type", "text/event-stream")}
-write flush
+read nukleus:begin.ext ${http:header(":status", "200")}
+read nukleus:begin.ext ${http:header("content-type", "text/event-stream")}
+
+read "data:Hello, world\n"
+read "id:" [0xc3 0x28] "\n"
+read "\n"
+
+read abort

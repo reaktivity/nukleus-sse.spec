@@ -42,7 +42,7 @@ public class DataIT
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveEmptyMessage() throws Exception
+    public void shouldReceiveEmptyData() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -54,7 +54,7 @@ public class DataIT
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveNonEmptyMessage() throws Exception
+    public void shouldReceiveNonEmptyData() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -66,7 +66,7 @@ public class DataIT
         "${scripts}/invalid.utf8/request",
         "${scripts}/invalid.utf8/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldResetAfterReceivingInvalidUTF8Message() throws Exception
+    public void shouldRejectDataWithInvalidUTF8() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -78,7 +78,7 @@ public class DataIT
         "${scripts}/initial.whitespace/request",
         "${scripts}/initial.whitespace/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveMessageWithInitialWhitespace() throws Exception
+    public void shouldReceiveDataWithInitialWhitespace() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");

@@ -28,7 +28,6 @@ read nukleus:begin.ext ${http:header(":method", "GET")}
 read nukleus:begin.ext ${http:header(":path", "/events/a8b7c6d5")}
 read nukleus:begin.ext ${http:header(":authority", "localhost:8080")}
 read nukleus:begin.ext ${http:header("accept", "text/event-stream")}
-read nukleus:begin.ext ${http:header("last-event-id", "100")}
 
 connected
 
@@ -36,4 +35,9 @@ read closed
 
 write nukleus:begin.ext ${http:header(":status", "200")}
 write nukleus:begin.ext ${http:header("content-type", "text/event-stream")}
+write flush
+
+write "data:Hello, world\n"
+write "id:  105\n"
+write "\n"
 write flush
