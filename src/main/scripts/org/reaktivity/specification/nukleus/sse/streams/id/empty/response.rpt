@@ -31,7 +31,7 @@ connected
 
 read closed
 
-write nukleus:data.ext [0x00]
 write flush
 
-write aborted
+write nukleus:data.ext [0x00]
+write flush
