@@ -42,7 +42,7 @@ public class CommentIT
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveEmptyData() throws Exception
+    public void shouldReceiveEmptyComment() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -54,7 +54,7 @@ public class CommentIT
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveNonEmptyData() throws Exception
+    public void shouldReceiveNonEmptyComment() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -66,7 +66,7 @@ public class CommentIT
         "${scripts}/multi.line/request",
         "${scripts}/multi.line/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveMultiLineData() throws Exception
+    public void shouldReceiveMultiLineComment() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
