@@ -39,6 +39,18 @@ public class DataIT
 
     @Test
     @Specification({
+        "${scripts}/name.only/request",
+        "${scripts}/name.only/response" })
+    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    public void shouldReceiveDataNameOnly() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
     @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
