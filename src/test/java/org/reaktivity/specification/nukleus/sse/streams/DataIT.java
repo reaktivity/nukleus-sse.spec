@@ -84,4 +84,16 @@ public class DataIT
         k3po.notifyBarrier("ROUTED_SERVER");
         k3po.finish();
     }
+
+    @Test
+    @Specification({
+        "${scripts}/multi.line/request",
+        "${scripts}/multi.line/response" })
+    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    public void shouldReceiveMultiLineData() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
 }
