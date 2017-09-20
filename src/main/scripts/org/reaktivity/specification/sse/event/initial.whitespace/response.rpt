@@ -38,6 +38,6 @@ write nukleus:begin.ext ${http:header("content-type", "text/event-stream")}
 write flush
 
 write "data:Hello, world\n"
-write "event:  105\n"
+write "event:  one\n"
 write "\n"
 write flush

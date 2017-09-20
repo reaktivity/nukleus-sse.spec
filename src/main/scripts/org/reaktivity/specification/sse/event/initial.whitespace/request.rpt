@@ -36,5 +36,5 @@ read nukleus:begin.ext ${http:header(":status", "200")}
 read nukleus:begin.ext ${http:header("content-type", "text/event-stream")}
 
 read "data:Hello, world\n"
-read "event:  105\n"
+read "event:  one\n"
 read "\n"
