@@ -27,10 +27,10 @@ import org.kaazing.k3po.junit.annotation.ScriptProperty;
 import org.kaazing.k3po.junit.annotation.Specification;
 import org.kaazing.k3po.junit.rules.K3poRule;
 
-public class DataIT
+public class EndOfLineIT
 {
     private final K3poRule k3po = new K3poRule()
-        .addScriptRoot("scripts", "org/reaktivity/specification/nukleus/sse/streams/data");
+        .addScriptRoot("scripts", "org/reaktivity/specification/nukleus/sse/streams/end.of.line");
 
     private final TestRule timeout = new DisableOnDebug(new Timeout(5, SECONDS));
 
@@ -39,10 +39,10 @@ public class DataIT
 
     @Test
     @Specification({
-        "${scripts}/name.only/request",
-        "${scripts}/name.only/response" })
+        "${scripts}/carriage.return/request",
+        "${scripts}/carriage.return/response" })
     @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveDataNameOnly() throws Exception
+    public void shouldReceiveDataWithCarriageReturnEndOfLine() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -51,10 +51,10 @@ public class DataIT
 
     @Test
     @Specification({
-        "${scripts}/empty/request",
-        "${scripts}/empty/response" })
+        "${scripts}/line.feed/request",
+        "${scripts}/line.feed/response" })
     @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveEmptyData() throws Exception
+    public void shouldReceiveDataWithLineFeedEndOfLine() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -63,46 +63,10 @@ public class DataIT
 
     @Test
     @Specification({
-        "${scripts}/non.empty/request",
-        "${scripts}/non.empty/response" })
+        "${scripts}/carriage.return.line.feed/request",
+        "${scripts}/carriage.return.line.feed/response" })
     @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveNonEmptyData() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
-
-    @Test
-    @Specification({
-        "${scripts}/invalid.utf8/request",
-        "${scripts}/invalid.utf8/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldRejectDataWithInvalidUTF8() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
-
-    @Test
-    @Specification({
-        "${scripts}/initial.whitespace/request",
-        "${scripts}/initial.whitespace/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveDataWithInitialWhitespace() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
-
-    @Test
-    @Specification({
-        "${scripts}/multi.line/request",
-        "${scripts}/multi.line/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveMultiLineData() throws Exception
+    public void shouldReceiveDataWithCarriageReturnLineFeedEndOfLine() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");

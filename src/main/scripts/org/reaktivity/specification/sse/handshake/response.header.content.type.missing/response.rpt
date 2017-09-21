@@ -14,23 +14,26 @@
 # under the License.
 #
 
-property newServerAcceptRef ${nuklei:newReferenceId()} # external
-property newServerConnectRef ${newServerAcceptRef} # external
+property newServerAcceptRef  ${nuklei:newReferenceId()} # external
+property serverTransport "nukleus://target/streams/sse"
 
-property serverConnect "nukleus://target/streams/sse"
-
-accept ${serverConnect}
-       option nukleus:route ${newServerConnectRef}
-       option nukleus:window 8192
-       option nukleus:transmission "half-duplex"
+accept ${serverTransport}
+  option nukleus:route  ${newServerAcceptRef}
+  option nukleus:window 8192
+  option nukleus:transmission "half-duplex"
 accepted
 
-read nukleus:begin.ext [0x10] "/events/a8b7c6d5" [0x03] "100"
+read nukleus:begin.ext ${http:header(":scheme", "http")}
+read nukleus:begin.ext ${http:header(":method", "GET")}
+read nukleus:begin.ext ${http:header(":path", "/events/a8b7c6d5")}
+read nukleus:begin.ext ${http:header(":authority", "localhost:8080")}
+read nukleus:begin.ext ${http:header("accept", "text/event-stream")}
 
 connected
 
 read closed
 
-write nukleus:data.ext [0x03] "105"
-write "Hello, world"
+write nukleus:begin.ext ${http:header(":status", "200")}
 write flush
+
+write aborted

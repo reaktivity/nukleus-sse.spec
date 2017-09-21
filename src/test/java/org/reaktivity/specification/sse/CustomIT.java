@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package org.reaktivity.specification.nukleus.sse.streams;
+package org.reaktivity.specification.sse;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.rules.RuleChain.outerRule;
@@ -27,12 +27,12 @@ import org.kaazing.k3po.junit.annotation.ScriptProperty;
 import org.kaazing.k3po.junit.annotation.Specification;
 import org.kaazing.k3po.junit.rules.K3poRule;
 
-public class DataIT
+public class CustomIT
 {
     private final K3poRule k3po = new K3poRule()
-        .addScriptRoot("scripts", "org/reaktivity/specification/nukleus/sse/streams/data");
+        .addScriptRoot("scripts", "org/reaktivity/specification/sse/custom");
 
-    private final TestRule timeout = new DisableOnDebug(new Timeout(5, SECONDS));
+    private final TestRule timeout = new DisableOnDebug(new Timeout(10, SECONDS));
 
     @Rule
     public final TestRule chain = outerRule(k3po).around(timeout);
@@ -41,8 +41,8 @@ public class DataIT
     @Specification({
         "${scripts}/name.only/request",
         "${scripts}/name.only/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveDataNameOnly() throws Exception
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldReceiveCustomFieldNameOnly() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -53,8 +53,8 @@ public class DataIT
     @Specification({
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveEmptyData() throws Exception
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldReceiveEmptyCustomField() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -65,8 +65,8 @@ public class DataIT
     @Specification({
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveNonEmptyData() throws Exception
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldReceiveNonEmptyCustomField() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -77,8 +77,8 @@ public class DataIT
     @Specification({
         "${scripts}/invalid.utf8/request",
         "${scripts}/invalid.utf8/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldRejectDataWithInvalidUTF8() throws Exception
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldRejectCustomFieldWithInvalidUTF8() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -89,20 +89,8 @@ public class DataIT
     @Specification({
         "${scripts}/initial.whitespace/request",
         "${scripts}/initial.whitespace/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveDataWithInitialWhitespace() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
-
-    @Test
-    @Specification({
-        "${scripts}/multi.line/request",
-        "${scripts}/multi.line/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveMultiLineData() throws Exception
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldReceiveCustomFieldWithInitialWhitespace() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");

@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package org.reaktivity.specification.nukleus.sse.streams;
+package org.reaktivity.specification.sse;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.rules.RuleChain.outerRule;
@@ -27,22 +27,22 @@ import org.kaazing.k3po.junit.annotation.ScriptProperty;
 import org.kaazing.k3po.junit.annotation.Specification;
 import org.kaazing.k3po.junit.rules.K3poRule;
 
-public class IdIT
+public class HandshakeIT
 {
     private final K3poRule k3po = new K3poRule()
-        .addScriptRoot("scripts", "org/reaktivity/specification/nukleus/sse/streams/id");
+        .addScriptRoot("scripts", "org/reaktivity/specification/sse/handshake");
 
-    private final TestRule timeout = new DisableOnDebug(new Timeout(5, SECONDS));
+    private final TestRule timeout = new DisableOnDebug(new Timeout(10, SECONDS));
 
     @Rule
     public final TestRule chain = outerRule(k3po).around(timeout);
 
     @Test
     @Specification({
-        "${scripts}/empty/request",
-        "${scripts}/empty/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveEmptyId() throws Exception
+        "${scripts}/request.header.last.event.id/request",
+        "${scripts}/request.header.last.event.id/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldHandshakeWithRequestHeaderLastEventId() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -51,10 +51,10 @@ public class IdIT
 
     @Test
     @Specification({
-        "${scripts}/non.empty/request",
-        "${scripts}/non.empty/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveNonEmptyId() throws Exception
+        "${scripts}/response.header.content.type.missing/request",
+        "${scripts}/response.header.content.type.missing/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldFailHandshakeWhenResponseHeaderContentTypeMissing() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -63,22 +63,10 @@ public class IdIT
 
     @Test
     @Specification({
-        "${scripts}/invalid.utf8/request",
-        "${scripts}/invalid.utf8/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldRejectIdWithInvalidUTF8() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
-
-    @Test
-    @Specification({
-        "${scripts}/initial.whitespace/request",
-        "${scripts}/initial.whitespace/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReceiveIdWithInitialWhitespace() throws Exception
+        "${scripts}/response.header.content.type.unsupported/request",
+        "${scripts}/response.header.content.type.unsupported/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldFailHandshakeWhenResponseHeaderContentTypeUnsupported() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");

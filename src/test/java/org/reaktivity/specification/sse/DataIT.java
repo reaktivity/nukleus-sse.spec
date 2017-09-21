@@ -39,10 +39,22 @@ public class DataIT
 
     @Test
     @Specification({
+        "${scripts}/name.only/request",
+        "${scripts}/name.only/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldReceiveDataNameOnly() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveEmptyMessage() throws Exception
+    public void shouldReceiveEmptyData() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -54,7 +66,43 @@ public class DataIT
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveNonEmptyMessage() throws Exception
+    public void shouldReceiveNonEmptyData() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
+        "${scripts}/invalid.utf8/request",
+        "${scripts}/invalid.utf8/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldRejectDataWithInvalidUTF8() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
+        "${scripts}/initial.whitespace/request",
+        "${scripts}/initial.whitespace/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldReceiveDataWithInitialWhitespace() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
+        "${scripts}/multi.line/request",
+        "${scripts}/multi.line/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldReceiveMultiLineData() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
