@@ -30,3 +30,5 @@ read nukleus:begin.ext [0x10] "/events/a8b7c6d5" [0x03] "100"
 connected
 
 read closed
+
+write flush
