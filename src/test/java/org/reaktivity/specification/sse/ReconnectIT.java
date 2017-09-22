@@ -27,10 +27,10 @@ import org.kaazing.k3po.junit.annotation.ScriptProperty;
 import org.kaazing.k3po.junit.annotation.Specification;
 import org.kaazing.k3po.junit.rules.K3poRule;
 
-public class HandshakeIT
+public class ReconnectIT
 {
     private final K3poRule k3po = new K3poRule()
-        .addScriptRoot("scripts", "org/reaktivity/specification/sse/handshake");
+        .addScriptRoot("scripts", "org/reaktivity/specification/sse/reconnect");
 
     private final TestRule timeout = new DisableOnDebug(new Timeout(10, SECONDS));
 
@@ -42,7 +42,7 @@ public class HandshakeIT
         "${scripts}/request.header.last.event.id/request",
         "${scripts}/request.header.last.event.id/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldHandshakeWithRequestHeaderLastEventId() throws Exception
+    public void shouldReconnectWithRequestHeaderLastEventId() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -51,10 +51,10 @@ public class HandshakeIT
 
     @Test
     @Specification({
-        "${scripts}/response.header.content.type.missing/request",
-        "${scripts}/response.header.content.type.missing/response" })
+        "${scripts}/response.status.code.200/request",
+        "${scripts}/response.status.code.200/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldFailHandshakeWhenResponseHeaderContentTypeMissing() throws Exception
+    public void shouldReconnectWhenResponseStatus200() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -63,10 +63,10 @@ public class HandshakeIT
 
     @Test
     @Specification({
-        "${scripts}/response.header.content.type.unsupported/request",
-        "${scripts}/response.header.content.type.unsupported/response" })
+        "${scripts}/response.status.code.500/request",
+        "${scripts}/response.status.code.500/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldFailHandshakeWhenResponseHeaderContentTypeUnsupported() throws Exception
+    public void shouldReconnectWhenResponseStatus500() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
