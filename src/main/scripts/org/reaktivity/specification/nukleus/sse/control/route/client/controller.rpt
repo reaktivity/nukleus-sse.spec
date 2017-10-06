@@ -30,15 +30,16 @@ write 0x00000001
 write ${controlRG010101C.nextCorrelationId()}
 write [0x01]
 write [0x06] "source"
-write [0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00]
+write 0L
 write [0x06] "target"
 write ${newClientConnectRef}
+write 0L
 write [0x07] "/events"
 write flush
 
 read 0x40000001
 read ${controlRG010101C.correlationId()}
-read ([0..8]:newClientAcceptRef)
+read (long:newClientAcceptRef)
 
 read notify ROUTED_CLIENT
 
