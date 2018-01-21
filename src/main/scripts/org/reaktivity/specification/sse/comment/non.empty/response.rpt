@@ -23,18 +23,22 @@ accept ${serverTransport}
   option nukleus:transmission "half-duplex"
 accepted
 
-read nukleus:begin.ext ${http:header(":scheme", "http")}
-read nukleus:begin.ext ${http:header(":method", "GET")}
-read nukleus:begin.ext ${http:header(":path", "/events/a8b7c6d5")}
-read nukleus:begin.ext ${http:header(":authority", "localhost:8080")}
-read nukleus:begin.ext ${http:header("accept", "text/event-stream")}
+read nukleus:begin.ext ${http:headers()
+                             .item(":scheme", "http")
+                             .item(":method", "GET")
+                             .item(":path", "/events/a8b7c6d5")
+                             .item(":authority", "localhost:8080")
+                             .item("accept", "text/event-stream")
+                             .build()}
 
 connected
 
 read closed
 
-write nukleus:begin.ext ${http:header(":status", "200")}
-write nukleus:begin.ext ${http:header("content-type", "text/event-stream")}
+write nukleus:begin.ext ${http:headers()
+                              .item(":status", "200")
+                              .item("content-type", "text/event-stream")
+                              .build()}
 write flush
 
 write ":comment\n"
