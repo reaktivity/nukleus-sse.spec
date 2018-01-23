@@ -26,7 +26,7 @@ accepted
 read nukleus:begin.ext ${http:headers()
                              .item(":scheme", "http")
                              .item(":method", "GET")
-                             .item(":path", "/events/a8b7c6d5")
+                             .item(":path", "/events/a8b7c6d5?lastEventId=104")
                              .item(":authority", "localhost:8080")
                              .item("accept", "text/event-stream")
                              .build()}
@@ -51,7 +51,7 @@ accepted
 read nukleus:begin.ext ${http:headers()
                              .item(":scheme", "http")
                              .item(":method", "GET")
-                             .item(":path", "/events/a8b7c6d5")
+                             .item(":path", "/events/a8b7c6d5?lastEventId=104")
                              .item(":authority", "localhost:8080")
                              .item("accept", "text/event-stream")
                              .item("last-event-id", "105")
