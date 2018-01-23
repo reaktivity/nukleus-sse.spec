@@ -26,35 +26,9 @@ accepted
 read nukleus:begin.ext ${http:headers()
                              .item(":scheme", "http")
                              .item(":method", "GET")
-                             .item(":path", "/events/a8b7c6d5")
+                             .item(":path", "/events/a8b7c6d5?lastEventId=100")
                              .item(":authority", "localhost:8080")
                              .item("accept", "text/event-stream")
-                             .build()}
-
-connected
-
-read closed
-
-write nukleus:begin.ext ${http:headers()
-                              .item(":status", "200")
-                              .item("content-type", "text/event-stream")
-                              .build()}
-write flush
-
-write "data:Hello, world\n"
-write "id:105\n"
-write "\n"
-write close
-
-accepted
-
-read nukleus:begin.ext ${http:headers()
-                             .item(":scheme", "http")
-                             .item(":method", "GET")
-                             .item(":path", "/events/a8b7c6d5")
-                             .item(":authority", "localhost:8080")
-                             .item("accept", "text/event-stream")
-                             .item("last-event-id", "105")
                              .build()}
 
 connected

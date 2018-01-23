@@ -51,6 +51,18 @@ public class ReconnectIT
 
     @Test
     @Specification({
+        "${scripts}/request.header.and.parameter.last.event.id/request",
+        "${scripts}/request.header.and.parameter.last.event.id/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldReconnectWithRequestHeaderAndParameterLastEventId() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/response.status.code.200/request",
         "${scripts}/response.status.code.200/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
