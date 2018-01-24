@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.reaktivity</groupId>
   <artifactId>nukleus-sse.spec</artifactId>
-  <version>0.10</version>
+  <version>0.11</version>
   <name>SSE Nukleus Specification</name>
   <description>SSE Nukleus Specification</description>
   <url>https://github.com/reaktivity/nukleus-sse.spec</url>

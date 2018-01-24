@@ -22,10 +22,10 @@ connect await ROUTED_SERVER
         option nukleus:window 8192
         option nukleus:transmission "half-duplex"
 
-write nukleus:begin.ext [0x10] "/events/a8b7c6d5" [0x00]
+write nukleus:begin.ext [0x10] "/events/a8b7c6d5" [0xff]
 
 connected
 
 write close
 
-# No way to detect a zero length data frame
+read nukleus:data.ext [0xff] [0xff]

@@ -27,27 +27,15 @@ import org.kaazing.k3po.junit.annotation.ScriptProperty;
 import org.kaazing.k3po.junit.annotation.Specification;
 import org.kaazing.k3po.junit.rules.K3poRule;
 
-public class EventIT
+public class TypeIT
 {
     private final K3poRule k3po = new K3poRule()
-        .addScriptRoot("scripts", "org/reaktivity/specification/sse/event");
+        .addScriptRoot("scripts", "org/reaktivity/specification/sse/type");
 
     private final TestRule timeout = new DisableOnDebug(new Timeout(10, SECONDS));
 
     @Rule
     public final TestRule chain = outerRule(k3po).around(timeout);
-
-    @Test
-    @Specification({
-        "${scripts}/name.only/request",
-        "${scripts}/name.only/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveEventNameOnly() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
 
     @Test
     @Specification({

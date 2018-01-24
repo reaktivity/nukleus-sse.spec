@@ -34,7 +34,7 @@ scope sse
         struct SseDataEx
         {
             string id;
-//          string type;
+            string type;
         }
     }
 }
