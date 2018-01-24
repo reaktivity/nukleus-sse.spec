@@ -28,6 +28,7 @@ connected
 
 write close
 
-read [0xc3 0x28]
+read nukleus:data.ext [0xff] [0x02] [0xc3 0x28]
+read "Hello, world"
 
 read abort
