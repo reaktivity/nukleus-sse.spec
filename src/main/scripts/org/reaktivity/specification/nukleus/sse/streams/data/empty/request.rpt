@@ -19,7 +19,6 @@ property newServerAcceptRef ${nuklei:newReferenceId()} # external
 connect await ROUTED_SERVER
         "nukleus://sse/streams/source"
         option nukleus:route ${newServerAcceptRef}
-        option nukleus:window 8192
         option nukleus:transmission "half-duplex"
 
 write nukleus:begin.ext [0x10] "/events/a8b7c6d5" [0xff]
@@ -28,4 +27,4 @@ connected
 
 write close
 
-read nukleus:data.ext [0xff] [0xff]
+read nukleus:transfer.ext [0xff] [0xff]

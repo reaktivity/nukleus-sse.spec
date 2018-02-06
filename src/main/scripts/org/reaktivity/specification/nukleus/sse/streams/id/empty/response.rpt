@@ -21,7 +21,6 @@ property serverConnect "nukleus://target/streams/sse"
 
 accept ${serverConnect}
        option nukleus:route ${newServerConnectRef}
-       option nukleus:window 8192
        option nukleus:transmission "half-duplex"
 accepted
 
@@ -33,5 +32,5 @@ read closed
 
 write flush
 
-write nukleus:data.ext [0x00] [0xff]
+write nukleus:transfer.ext [0x00] [0xff]
 write flush

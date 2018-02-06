@@ -19,7 +19,6 @@ property newServerAcceptRef  ${nuklei:newReferenceId()} # external
 connect await ROUTED_SERVER
         "nukleus://sse/streams/source"
   option nukleus:route ${newServerAcceptRef}
-  option nukleus:window 8192
   option nukleus:transmission "half-duplex"
 
 write nukleus:begin.ext ${http:headers()
@@ -49,7 +48,6 @@ read closed
 connect await RECONNECT_EVENT_STREAM
         "nukleus://sse/streams/source"
   option nukleus:route ${newServerAcceptRef}
-  option nukleus:window 8192
   option nukleus:transmission "half-duplex"
 
 write nukleus:begin.ext ${http:headers()

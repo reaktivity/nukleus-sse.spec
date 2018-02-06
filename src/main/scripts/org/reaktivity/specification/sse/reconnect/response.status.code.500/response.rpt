@@ -19,7 +19,6 @@ property serverTransport "nukleus://target/streams/sse"
 
 accept ${serverTransport}
   option nukleus:route  ${newServerAcceptRef}
-  option nukleus:window 8192
   option nukleus:transmission "half-duplex"
 
 accepted
