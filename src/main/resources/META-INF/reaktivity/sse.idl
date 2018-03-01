@@ -33,6 +33,7 @@ scope sse
 
         struct SseDataEx
         {
+            int64 timestamp;
             string id;
             string type;
         }

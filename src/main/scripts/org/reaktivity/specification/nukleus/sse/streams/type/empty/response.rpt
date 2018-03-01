@@ -31,5 +31,5 @@ connected
 
 read closed
 
-write nukleus:data.ext [0xff] [0x00]
+write nukleus:data.ext 1519937168533L [0xff] [0x00]
 write "Hello, world"
