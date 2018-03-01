@@ -39,22 +39,10 @@ public class TimestampIT
 
     @Test
     @Specification({
-        "${scripts}/name.only/request",
-        "${scripts}/name.only/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveIdNameOnly() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
-
-    @Test
-    @Specification({
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveEmptyId() throws Exception
+    public void shouldReceiveEmptyMessage() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -66,34 +54,11 @@ public class TimestampIT
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveNonEmptyId() throws Exception
+    public void shouldReceiveNonEmptyMessage() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
         k3po.finish();
     }
 
-    @Test
-    @Specification({
-        "${scripts}/invalid.utf8/request",
-        "${scripts}/invalid.utf8/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldRejectIdWithInvalidUTF8() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
-
-    @Test
-    @Specification({
-        "${scripts}/initial.whitespace/request",
-        "${scripts}/initial.whitespace/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
-    public void shouldReceiveIdWithInitialWhitespace() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
 }

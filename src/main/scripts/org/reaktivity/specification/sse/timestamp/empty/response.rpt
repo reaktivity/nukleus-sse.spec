@@ -41,6 +41,6 @@ write nukleus:begin.ext ${http:headers()
                               .build()}
 write flush
 
-write "id:\n"
-write "timestamp:0x161e350a495"
+write "data:\n"
+write "timestamp:0x161e350a495\n"
 write "\n"
