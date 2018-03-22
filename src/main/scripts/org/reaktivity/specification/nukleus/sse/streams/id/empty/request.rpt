@@ -22,10 +22,10 @@ connect await ROUTED_SERVER
         option nukleus:window 8192
         option nukleus:transmission "half-duplex"
 
-write nukleus:begin.ext [0x10] "/events/a8b7c6d5" [0xff]
+write nukleus:begin.ext ${core:string16("/events/a8b7c6d5")} ${core:string(null)}
 
 connected
 
 write close
 
-read nukleus:data.ext 1519937168533L [0x00] [0xff]
+read nukleus:data.ext 1519937168533L ${core:string("")} ${core:string(null)}

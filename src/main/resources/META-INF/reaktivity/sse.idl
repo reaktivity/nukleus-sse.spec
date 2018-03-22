@@ -19,7 +19,7 @@ scope sse
     {
         struct SseRouteEx
         {
-            string pathInfo;
+            string16 pathInfo;
         }
     }
 
@@ -27,7 +27,7 @@ scope sse
     {
         struct SseBeginEx
         {
-            string pathInfo;
+            string16 pathInfo;
             string lastEventId;
         }
 
