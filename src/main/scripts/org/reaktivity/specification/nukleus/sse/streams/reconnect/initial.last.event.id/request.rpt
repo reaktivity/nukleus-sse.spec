@@ -22,12 +22,12 @@ connect await ROUTED_SERVER
         option nukleus:window 8192
         option nukleus:transmission "half-duplex"
 
-write nukleus:begin.ext [0x10] "/events/a8b7c6d5" [0x03] "104"
+write nukleus:begin.ext ${core:string16("/events/a8b7c6d5")} ${core:string("104")}
 
 connected
 
 write close
-read nukleus:data.ext 1519937168533L [0x03] "105" [0xff]
+read nukleus:data.ext 1519937168533L ${core:string("105")} ${core:string(null)}
 read "Hello, world"
 
 read notify RECONNECT_EVENT_STREAM
@@ -39,7 +39,7 @@ connect await RECONNECT_EVENT_STREAM
         option nukleus:window 8192
         option nukleus:transmission "half-duplex"
 
-write nukleus:begin.ext [0x10] "/events/a8b7c6d5" [0x03] "105"
+write nukleus:begin.ext ${core:string16("/events/a8b7c6d5")} ${core:string("105")}
 
 connected
 

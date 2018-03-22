@@ -25,12 +25,12 @@ accept ${serverConnect}
        option nukleus:transmission "half-duplex"
 accepted
 
-read nukleus:begin.ext [0x10] "/events/a8b7c6d5" [0xff]
+read nukleus:begin.ext ${core:string16("/events/a8b7c6d5")} ${core:string(null)}
 
 connected
 
 read closed
 
-write nukleus:data.ext 1519937168533L [0xff] [0x03] "one"
+write nukleus:data.ext 1519937168533L ${core:string(null)} ${core:string("one")}
 write "Hello, world"
 write flush
