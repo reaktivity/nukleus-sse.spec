@@ -39,6 +39,6 @@ read nukleus:begin.ext ${http:headers()
                              .item("content-type", "text/event-stream;ext=timestamp")
                              .build()}
 
-read "data:Hello, world\n"
 read "timestamp:0x161e350a495\n"
+read "data:Hello, world\n"
 read "\n"

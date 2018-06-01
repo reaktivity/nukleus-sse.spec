@@ -40,8 +40,8 @@ read nukleus:begin.ext ${http:headers()
                              .item("content-type", "text/event-stream")
                              .build()}
 
-read "data:Hello, world\n"
 read "event:" [0xc3 0x28] "\n"
+read "data:Hello, world\n"
 read "\n"
 
 read abort

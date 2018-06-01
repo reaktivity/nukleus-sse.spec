@@ -41,8 +41,8 @@ write nukleus:begin.ext ${http:headers()
                               .build()}
 write flush
 
-write "data:Hello, world\n"
 write "id:105\n"
+write "data:Hello, world\n"
 write "\n"
 write close
 
