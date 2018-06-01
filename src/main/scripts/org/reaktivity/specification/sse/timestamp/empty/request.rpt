@@ -40,6 +40,6 @@ read nukleus:begin.ext ${http:headers()
                              .build()}
 
 
-read "data:\n"
 read "timestamp:0x161e350a495\n"
+read "data:\n"
 read "\n"

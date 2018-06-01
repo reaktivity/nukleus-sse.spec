@@ -63,6 +63,18 @@ public class TimestampIT
 
     @Test
     @Specification({
+        "${scripts}/fragmented/request",
+        "${scripts}/fragmented/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldReceiveFragmentedMessage() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/non.empty.with.type/request",
         "${scripts}/non.empty.with.type/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")

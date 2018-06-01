@@ -63,6 +63,18 @@ public class TypeIT
 
     @Test
     @Specification({
+        "${scripts}/fragmented/request",
+        "${scripts}/fragmented/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldReceiveNonEmptyEventWithFragmentedMessage() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/invalid.utf8/request",
         "${scripts}/invalid.utf8/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")

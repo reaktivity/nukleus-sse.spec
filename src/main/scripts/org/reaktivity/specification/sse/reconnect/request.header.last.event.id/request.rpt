@@ -39,8 +39,8 @@ read nukleus:begin.ext ${http:headers()
                              .item("content-type", "text/event-stream")
                              .build()}
 
-read "data:Hello, world\n"
 read "id:105\n"
+read "data:Hello, world\n"
 read "\n"
 
 read notify RECONNECT_EVENT_STREAM

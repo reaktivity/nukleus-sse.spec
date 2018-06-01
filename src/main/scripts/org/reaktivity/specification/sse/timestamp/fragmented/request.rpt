@@ -15,19 +15,21 @@
 #
 
 property newServerAcceptRef  ${nuklei:newReferenceId()} # external
+property padding 0
 
 connect await ROUTED_SERVER
         "nukleus://sse/streams/source"
   option nukleus:route ${newServerAcceptRef}
-  option nukleus:window 8192
+  option nukleus:window ${5 + padding}
   option nukleus:transmission "half-duplex"
+  option nukleus:alignment "message"
 
 write nukleus:begin.ext ${http:headers()
                               .item(":scheme", "http")
                               .item(":method", "GET")
                               .item(":path", "/events/a8b7c6d5")
                               .item(":authority", "localhost:8080")
-                              .item("accept", "text/event-stream")
+                              .item("accept", "text/event-stream;ext=timestamp")
                               .build()}
 
 connected
@@ -36,9 +38,9 @@ write close
 
 read nukleus:begin.ext ${http:headers()
                              .item(":status", "200")
-                             .item("content-type", "text/event-stream")
+                             .item("content-type", "text/event-stream;ext=timestamp")
                              .build()}
 
-read "event:  one\n"
-read "data:Hello, world\n"
-read "\n"
+read "timestamp:0x161e350a495\n"
+     "data:Hello, world\n"
+     "\n"

@@ -26,9 +26,9 @@ accepted
 read nukleus:begin.ext ${http:headers()
                              .item(":scheme", "http")
                              .item(":method", "GET")
-                             .item(":path", "/events/a8b7c6d5?lastEventId=104")
+                             .item(":path", "/events/a8b7c6d5")
                              .item(":authority", "localhost:8080")
-                             .item("accept", "text/event-stream")
+                             .item("accept", "text/event-stream;ext=timestamp")
                              .build()}
 
 connected
@@ -37,32 +37,11 @@ read closed
 
 write nukleus:begin.ext ${http:headers()
                               .item(":status", "200")
-                              .item("content-type", "text/event-stream")
+                              .item("content-type", "text/event-stream;ext=timestamp")
                               .build()}
 write flush
 
-write "id:105\n"
-write "data:Hello, world\n"
-write "\n"
-write close
-
-accepted
-
-read nukleus:begin.ext ${http:headers()
-                             .item(":scheme", "http")
-                             .item(":method", "GET")
-                             .item(":path", "/events/a8b7c6d5?lastEventId=104")
-                             .item(":authority", "localhost:8080")
-                             .item("accept", "text/event-stream")
-                             .item("last-event-id", "105")
-                             .build()}
-
-connected
-
-read closed
-
-write nukleus:begin.ext ${http:headers()
-                              .item(":status", "200")
-                              .item("content-type", "text/event-stream")
-                              .build()}
+write "timestamp:0x161e350a495\n"
+      "data:Hello, world\n"
+      "\n"
 write flush
