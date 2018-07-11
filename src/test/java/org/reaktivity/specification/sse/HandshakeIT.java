@@ -63,6 +63,18 @@ public class HandshakeIT
 
     @Test
     @Specification({
+        "${scripts}/request.parameter.last.event.id.url.encoded/request",
+        "${scripts}/request.parameter.last.event.id.url.encoded/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldHandshakeWithURLEncodedRequestParameterLastEventId() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/response.header.content.type.missing/request",
         "${scripts}/response.header.content.type.missing/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
