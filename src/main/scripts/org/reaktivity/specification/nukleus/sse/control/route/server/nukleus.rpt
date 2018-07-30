@@ -37,6 +37,7 @@ read ${core:string16("/events")}
 write 0x40000001
 write ${correlationIdRG010001N}
 write ${nuklei:newReferenceId()}
+write ${serveConnectRefRG010001N}
 write flush
 
 close
