@@ -36,8 +36,6 @@ write "Hello, world"
 write flush
 
 write nukleus:end.ext ${core:string("105")}
-write flush
-
 write close
 
 accepted
