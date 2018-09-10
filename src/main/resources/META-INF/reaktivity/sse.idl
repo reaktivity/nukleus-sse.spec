@@ -40,7 +40,7 @@ scope sse
         
         struct SseEndEx
         {
-            string lastEventId;
+            string id;
         }
     }
 }
