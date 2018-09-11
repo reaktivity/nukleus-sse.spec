@@ -15,11 +15,12 @@
 #
 
 property newServerAcceptRef  ${nuklei:newReferenceId()} # external
+property padding 288
 
 connect await ROUTED_SERVER
         "nukleus://sse/streams/source"
   option nukleus:route ${newServerAcceptRef}
-  option nukleus:window 8192
+  option nukleus:window ${18 + padding}
   option nukleus:transmission "half-duplex"
 
 write nukleus:begin.ext ${http:headers()
@@ -38,6 +39,14 @@ read nukleus:begin.ext ${http:headers()
                              .item(":status", "200")
                              .item("content-type", "text/event-stream")
                              .build()}
+          
+read "id:" 
+read [0..254] 
+read "\n" "event:" 
+read [0..16] 
+read "\n"                   
+read "data:Hello, world\n"
+read "\n"
 
 read "id:105\n"
 read "\n"
