@@ -37,5 +37,10 @@ scope sse
             string id;
             string type;
         }
+        
+        struct SseEndEx
+        {
+            string id;
+        }
     }
 }

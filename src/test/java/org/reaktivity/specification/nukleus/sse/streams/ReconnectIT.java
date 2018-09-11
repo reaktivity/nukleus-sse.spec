@@ -39,10 +39,34 @@ public class ReconnectIT
 
     @Test
     @Specification({
-        "${scripts}/last.event.id/request",
-        "${scripts}/last.event.id/response" })
+        "${scripts}/last.event.id.data/request",
+        "${scripts}/last.event.id.data/response" })
     @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
-    public void shouldReconnectWithLastEventId() throws Exception
+    public void shouldReconnectWithLastEventIdOnData() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
+        "${scripts}/last.event.id.end/request",
+        "${scripts}/last.event.id.end/response" })
+    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    public void shouldReconnectWithLastEventIdOnEnd() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
+        "${scripts}/last.event.id.end.fragmented/request",
+        "${scripts}/last.event.id.end.fragmented/response" })
+    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    public void shouldReconnectWithLastEventIdOnEndFragmented() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
