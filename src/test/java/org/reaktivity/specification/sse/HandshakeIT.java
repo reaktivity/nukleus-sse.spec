@@ -51,6 +51,18 @@ public class HandshakeIT
 
     @Test
     @Specification({
+        "${scripts}/initial.comment/request",
+        "${scripts}/initial.comment/response" })
+    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    public void shouldSendInitialComment() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/request.parameter.last.event.id/request",
         "${scripts}/request.parameter.last.event.id/response" })
     @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
