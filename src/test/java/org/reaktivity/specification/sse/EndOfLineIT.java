@@ -41,7 +41,7 @@ public class EndOfLineIT
     @Specification({
         "${scripts}/carriage.return/request",
         "${scripts}/carriage.return/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveDataWithCarriageReturnEndOfLine() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class EndOfLineIT
     @Specification({
         "${scripts}/line.feed/request",
         "${scripts}/line.feed/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveDataWithLineFeedEndOfLine() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class EndOfLineIT
     @Specification({
         "${scripts}/line.feed/request",
         "${scripts}/line.feed/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveDataWithCarriageReturnLineFeedEndOfLine() throws Exception
     {
         k3po.start();

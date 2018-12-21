@@ -41,7 +41,7 @@ public class RetryIT
     @Specification({
         "${scripts}/name.only/request",
         "${scripts}/name.only/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveRetryNameOnly() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class RetryIT
     @Specification({
         "${scripts}/numeric/request",
         "${scripts}/numeric/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveNumericRetry() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class RetryIT
     @Specification({
         "${scripts}/non.numeric/request",
         "${scripts}/non.numeric/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldRejectNonNumericRetry() throws Exception
     {
         k3po.start();
@@ -77,7 +77,7 @@ public class RetryIT
     @Specification({
         "${scripts}/invalid.utf8/request",
         "${scripts}/invalid.utf8/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldRejectRetryWithInvalidUTF8() throws Exception
     {
         k3po.start();
@@ -89,7 +89,7 @@ public class RetryIT
     @Specification({
         "${scripts}/initial.whitespace/request",
         "${scripts}/initial.whitespace/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveRetryWithInitialWhitespace() throws Exception
     {
         k3po.start();

@@ -41,7 +41,7 @@ public class HandshakeIT
     @Specification({
         "${scripts}/last.event.id/request",
         "${scripts}/last.event.id/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldHandshakeWithLastEventId() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class HandshakeIT
     @Specification({
         "${scripts}/connection.failed/request",
         "${scripts}/connection.failed/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldFailHandshake() throws Exception
     {
         k3po.start();

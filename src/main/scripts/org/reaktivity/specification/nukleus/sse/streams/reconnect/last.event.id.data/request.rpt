@@ -14,11 +14,8 @@
 # under the License.
 #
 
-property newServerAcceptRef ${nuklei:newReferenceId()} # external
-
 connect await ROUTED_SERVER
-        "nukleus://sse/streams/source"
-        option nukleus:route ${newServerAcceptRef}
+        "nukleus://streams/sse#0"
         option nukleus:window 8192
         option nukleus:transmission "half-duplex"
 
@@ -35,8 +32,7 @@ read notify RECONNECT_EVENT_STREAM
 read closed
 
 connect await RECONNECT_EVENT_STREAM
-        "nukleus://sse/streams/source"
-        option nukleus:route ${newServerAcceptRef}
+        "nukleus://streams/sse#0"
         option nukleus:window 8192
         option nukleus:transmission "half-duplex"
 

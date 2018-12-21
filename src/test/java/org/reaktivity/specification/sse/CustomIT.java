@@ -41,7 +41,7 @@ public class CustomIT
     @Specification({
         "${scripts}/name.only/request",
         "${scripts}/name.only/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveCustomFieldNameOnly() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class CustomIT
     @Specification({
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveEmptyCustomField() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class CustomIT
     @Specification({
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveNonEmptyCustomField() throws Exception
     {
         k3po.start();
@@ -77,7 +77,7 @@ public class CustomIT
     @Specification({
         "${scripts}/invalid.utf8/request",
         "${scripts}/invalid.utf8/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldRejectCustomFieldWithInvalidUTF8() throws Exception
     {
         k3po.start();
@@ -89,7 +89,7 @@ public class CustomIT
     @Specification({
         "${scripts}/initial.whitespace/request",
         "${scripts}/initial.whitespace/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveCustomFieldWithInitialWhitespace() throws Exception
     {
         k3po.start();

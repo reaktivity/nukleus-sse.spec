@@ -41,7 +41,7 @@ public class HandshakeIT
     @Specification({
         "${scripts}/request.header.last.event.id/request",
         "${scripts}/request.header.last.event.id/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldHandshakeWithRequestHeaderLastEventId() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class HandshakeIT
     @Specification({
         "${scripts}/initial.comment/request",
         "${scripts}/initial.comment/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldSendInitialComment() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class HandshakeIT
     @Specification({
         "${scripts}/request.parameter.last.event.id/request",
         "${scripts}/request.parameter.last.event.id/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldHandshakeWithRequestParameterLastEventId() throws Exception
     {
         k3po.start();
@@ -77,7 +77,7 @@ public class HandshakeIT
     @Specification({
         "${scripts}/request.parameter.last.event.id.url.encoded/request",
         "${scripts}/request.parameter.last.event.id.url.encoded/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldHandshakeWithURLEncodedRequestParameterLastEventId() throws Exception
     {
         k3po.start();
@@ -89,7 +89,7 @@ public class HandshakeIT
     @Specification({
         "${scripts}/response.header.content.type.missing/request",
         "${scripts}/response.header.content.type.missing/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldFailHandshakeWhenResponseHeaderContentTypeMissing() throws Exception
     {
         k3po.start();
@@ -101,7 +101,7 @@ public class HandshakeIT
     @Specification({
         "${scripts}/response.header.content.type.unsupported/request",
         "${scripts}/response.header.content.type.unsupported/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldFailHandshakeWhenResponseHeaderContentTypeUnsupported() throws Exception
     {
         k3po.start();

@@ -41,7 +41,7 @@ public class ReconnectIT
     @Specification({
         "${scripts}/request.header.last.event.id/request",
         "${scripts}/request.header.last.event.id/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReconnectWithRequestHeaderLastEventIdAfterReceivingIdOnly() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class ReconnectIT
     @Specification({
         "${scripts}/request.header.last.event.id.fragmented/request",
         "${scripts}/request.header.last.event.id.fragmented/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReconnectWithRequestHeaderLastEventIdWithFlowControlAfterReceivingIdOnly() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class ReconnectIT
     @Specification({
         "${scripts}/request.header.last.event.id.and.data/request",
         "${scripts}/request.header.last.event.id.and.data/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReconnectWithRequestHeaderLastEventIdAfterReceivingIdAndData() throws Exception
     {
         k3po.start();
@@ -77,7 +77,7 @@ public class ReconnectIT
     @Specification({
         "${scripts}/request.header.and.parameter.last.event.id/request",
         "${scripts}/request.header.and.parameter.last.event.id/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReconnectWithRequestHeaderAndParameterLastEventId() throws Exception
     {
         k3po.start();
@@ -89,7 +89,7 @@ public class ReconnectIT
     @Specification({
         "${scripts}/response.status.code.200/request",
         "${scripts}/response.status.code.200/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReconnectWhenResponseStatus200() throws Exception
     {
         k3po.start();
@@ -101,7 +101,7 @@ public class ReconnectIT
     @Specification({
         "${scripts}/response.status.code.500/request",
         "${scripts}/response.status.code.500/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReconnectWhenResponseStatus500() throws Exception
     {
         k3po.start();
