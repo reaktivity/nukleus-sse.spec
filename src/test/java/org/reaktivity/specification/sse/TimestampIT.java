@@ -41,7 +41,7 @@ public class TimestampIT
     @Specification({
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveEmptyMessage() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class TimestampIT
     @Specification({
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveNonEmptyMessage() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class TimestampIT
     @Specification({
         "${scripts}/fragmented/request",
         "${scripts}/fragmented/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveFragmentedMessage() throws Exception
     {
         k3po.start();
@@ -77,7 +77,7 @@ public class TimestampIT
     @Specification({
         "${scripts}/non.empty.with.type/request",
         "${scripts}/non.empty.with.type/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveNonEmptyMessageWithType() throws Exception
     {
         k3po.start();

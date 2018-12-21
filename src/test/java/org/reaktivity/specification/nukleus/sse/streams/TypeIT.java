@@ -41,7 +41,7 @@ public class TypeIT
     @Specification({
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldReceiveEmptyType() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class TypeIT
     @Specification({
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldReceiveNonEmptyType() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class TypeIT
     @Specification({
         "${scripts}/fragmented/request",
         "${scripts}/fragmented/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldReceiveNonEmptyTypeWithFragmentedMessage() throws Exception
     {
         k3po.start();
@@ -77,7 +77,7 @@ public class TypeIT
     @Specification({
         "${scripts}/invalid.utf8/request",
         "${scripts}/invalid.utf8/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldRejectTypeWithInvalidUTF8() throws Exception
     {
         k3po.start();
@@ -89,7 +89,7 @@ public class TypeIT
     @Specification({
         "${scripts}/initial.whitespace/request",
         "${scripts}/initial.whitespace/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldReceiveTypeWithInitialWhitespace() throws Exception
     {
         k3po.start();

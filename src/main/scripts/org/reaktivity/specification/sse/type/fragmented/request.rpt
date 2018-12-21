@@ -14,12 +14,10 @@
 # under the License.
 #
 
-property newServerAcceptRef  ${nuklei:newReferenceId()} # external
 property padding 0
 
 connect await ROUTED_SERVER
-        "nukleus://sse/streams/source"
-  option nukleus:route ${newServerAcceptRef}
+        "nukleus://streams/sse#0"
   option nukleus:window ${5 + padding}
   option nukleus:transmission "half-duplex"
   option nukleus:alignment "message"

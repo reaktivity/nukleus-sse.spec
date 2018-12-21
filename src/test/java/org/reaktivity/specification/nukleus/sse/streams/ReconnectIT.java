@@ -41,7 +41,7 @@ public class ReconnectIT
     @Specification({
         "${scripts}/last.event.id.data/request",
         "${scripts}/last.event.id.data/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldReconnectWithLastEventIdOnData() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class ReconnectIT
     @Specification({
         "${scripts}/last.event.id.end/request",
         "${scripts}/last.event.id.end/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldReconnectWithLastEventIdOnEnd() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class ReconnectIT
     @Specification({
         "${scripts}/last.event.id.end.fragmented/request",
         "${scripts}/last.event.id.end.fragmented/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldReconnectWithLastEventIdOnEndFragmented() throws Exception
     {
         k3po.start();
@@ -77,7 +77,7 @@ public class ReconnectIT
     @Specification({
         "${scripts}/initial.last.event.id/request",
         "${scripts}/initial.last.event.id/response" })
-    @ScriptProperty("serverConnect \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
     public void shouldReconnectWithInitialLastEventId() throws Exception
     {
         k3po.start();

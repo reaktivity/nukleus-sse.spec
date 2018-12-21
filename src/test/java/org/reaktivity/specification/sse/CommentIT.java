@@ -41,7 +41,7 @@ public class CommentIT
     @Specification({
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveEmptyComment() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class CommentIT
     @Specification({
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveNonEmptyComment() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class CommentIT
     @Specification({
         "${scripts}/multi.line/request",
         "${scripts}/multi.line/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveMultiLineComment() throws Exception
     {
         k3po.start();

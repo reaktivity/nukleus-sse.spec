@@ -41,7 +41,7 @@ public class TypeIT
     @Specification({
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveEmptyEvent() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class TypeIT
     @Specification({
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveNonEmptyEvent() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class TypeIT
     @Specification({
         "${scripts}/fragmented/request",
         "${scripts}/fragmented/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveNonEmptyEventWithFragmentedMessage() throws Exception
     {
         k3po.start();
@@ -77,7 +77,7 @@ public class TypeIT
     @Specification({
         "${scripts}/invalid.utf8/request",
         "${scripts}/invalid.utf8/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldRejectEventWithInvalidUTF8() throws Exception
     {
         k3po.start();
@@ -89,7 +89,7 @@ public class TypeIT
     @Specification({
         "${scripts}/initial.whitespace/request",
         "${scripts}/initial.whitespace/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveEventWithInitialWhitespace() throws Exception
     {
         k3po.start();

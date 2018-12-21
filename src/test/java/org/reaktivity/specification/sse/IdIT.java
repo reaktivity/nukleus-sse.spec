@@ -41,7 +41,7 @@ public class IdIT
     @Specification({
         "${scripts}/name.only/request",
         "${scripts}/name.only/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveIdNameOnly() throws Exception
     {
         k3po.start();
@@ -53,7 +53,7 @@ public class IdIT
     @Specification({
         "${scripts}/empty/request",
         "${scripts}/empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveEmptyId() throws Exception
     {
         k3po.start();
@@ -65,7 +65,7 @@ public class IdIT
     @Specification({
         "${scripts}/non.empty/request",
         "${scripts}/non.empty/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveNonEmptyId() throws Exception
     {
         k3po.start();
@@ -77,7 +77,7 @@ public class IdIT
     @Specification({
         "${scripts}/invalid.utf8/request",
         "${scripts}/invalid.utf8/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldRejectIdWithInvalidUTF8() throws Exception
     {
         k3po.start();
@@ -89,7 +89,7 @@ public class IdIT
     @Specification({
         "${scripts}/initial.whitespace/request",
         "${scripts}/initial.whitespace/response" })
-    @ScriptProperty("serverTransport \"nukleus://sse/streams/source\"")
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldReceiveIdWithInitialWhitespace() throws Exception
     {
         k3po.start();
