@@ -19,21 +19,23 @@ connect await ROUTED_SERVER
   option nukleus:window 8192
   option nukleus:transmission "half-duplex"
 
-write nukleus:begin.ext ${http:headers()
-                              .item(":scheme", "http")
-                              .item(":method", "GET")
-                              .item(":path", "/events/a8b7c6d5")
-                              .item(":authority", "localhost:8080")
-                              .item("accept", "text/event-stream")
+write nukleus:begin.ext ${http:beginEx()
+                              .typeId(nukleus:id("http"))
+                              .header(":scheme", "http")
+                              .header(":method", "GET")
+                              .header(":path", "/events/a8b7c6d5")
+                              .header(":authority", "localhost:8080")
+                              .header("accept", "text/event-stream")
                               .build()}
 
 connected
 
 write close
 
-read nukleus:begin.ext ${http:headers()
-                             .item(":status", "200")
-                             .item("content-type", "text/event-stream")
+read nukleus:begin.ext ${http:beginEx()
+                             .typeId(nukleus:id("http"))
+                             .header(":status", "200")
+                             .header("content-type", "text/event-stream")
                              .build()}
 
 read "event:one\n"

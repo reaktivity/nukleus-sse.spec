@@ -22,11 +22,20 @@ connect await ROUTED_SERVER
         option nukleus:transmission "half-duplex"
         option nukleus:alignment "message"
 
-write nukleus:begin.ext ${core:string16("/events/a8b7c6d5")} ${core:string(null)}
+write nukleus:begin.ext ${sse:beginEx()
+                             .typeId(nukleus:id("sse"))
+                             .pathInfo("/events/a8b7c6d5")
+                             .lastEventId(null)
+                             .build()}
 
 connected
 
 write close
 
-read nukleus:data.ext 1519937168533L ${core:string(null)} ${core:string(null)}
+read nukleus:data.ext ${sse:dataEx()
+                           .typeId(nukleus:id("sse"))
+                           .timestamp(1519937168533)
+                           .id(null)
+                           .type(null)
+                           .build()}
 read "Hello, world"
