@@ -21,22 +21,33 @@ accept ${serverConnect}
        option nukleus:transmission "half-duplex"
 accepted
 
-read nukleus:begin.ext ${core:string16("/events/a8b7c6d5")} ${core:string(null)}
+read nukleus:begin.ext ${sse:beginEx()
+                            .typeId(nukleus:id("sse"))
+                            .pathInfo("/events/a8b7c6d5")
+                            .lastEventId(null)
+                            .build()}
 
 connected
 
 read closed
 
-write nukleus:data.ext 1519937168533L [0xfe] ${http:randomAscii(254)} [0x10] ${http:randomAscii(16)}
+write nukleus:data.ext ${nukleus:id("sse")} 1519937168533L [0xfe] ${http:randomAscii(254)} [0x10] ${http:randomAscii(16)}
 write "Hello, world"
 write flush
 
-write nukleus:end.ext ${core:string("105")}
+write nukleus:end.ext ${sse:endEx()
+                           .typeId(nukleus:id("sse"))
+                           .id("105")
+                           .build()}
 write close
 
 accepted
 
-read nukleus:begin.ext ${core:string16("/events/a8b7c6d5")} ${core:string("105")}
+read nukleus:begin.ext ${sse:beginEx()
+                            .typeId(nukleus:id("sse"))
+                            .pathInfo("/events/a8b7c6d5")
+                            .lastEventId("105")
+                            .build()}
 
 connected
 

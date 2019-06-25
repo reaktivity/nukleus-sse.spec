@@ -19,13 +19,20 @@ connect await ROUTED_SERVER
         option nukleus:window 8192
         option nukleus:transmission "half-duplex"
 
-write nukleus:begin.ext ${core:string16("/events/a8b7c6d5")} ${core:string(null)}
+write nukleus:begin.ext ${sse:beginEx()
+                             .typeId(nukleus:id("sse"))
+                             .pathInfo("/events/a8b7c6d5")
+                             .lastEventId(null)
+                             .build()}
 
 connected
 
 write close
 
-read nukleus:end.ext ${core:string("105")}
+read nukleus:end.ext ${sse:endEx()
+                          .typeId(nukleus:id("sse"))
+                          .id("105")
+                          .build()}
 
 read notify RECONNECT_EVENT_STREAM
 read closed
@@ -35,7 +42,11 @@ connect await RECONNECT_EVENT_STREAM
         option nukleus:window 8192
         option nukleus:transmission "half-duplex"
 
-write nukleus:begin.ext ${core:string16("/events/a8b7c6d5")} ${core:string("105")}
+write nukleus:begin.ext ${sse:beginEx()
+                             .typeId(nukleus:id("sse"))
+                             .pathInfo("/events/a8b7c6d5")
+                             .lastEventId("105")
+                             .build()}
 
 connected
 

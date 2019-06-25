@@ -25,20 +25,20 @@ scope sse
 
     scope stream
     {
-        struct SseBeginEx
+        struct SseBeginEx extends core::stream::Extension
         {
             string16 pathInfo;
             string lastEventId;
         }
 
-        struct SseDataEx
+        struct SseDataEx extends core::stream::Extension
         {
             int64 timestamp;
             string id;
             string type;
         }
-        
-        struct SseEndEx
+
+        struct SseEndEx extends core::stream::Extension
         {
             string id;
         }

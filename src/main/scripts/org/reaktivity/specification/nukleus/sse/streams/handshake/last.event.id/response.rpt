@@ -21,7 +21,11 @@ accept ${serverConnect}
        option nukleus:transmission "half-duplex"
 accepted
 
-read nukleus:begin.ext ${core:string16("/events/a8b7c6d5")} ${core:string("100")}
+read nukleus:begin.ext ${sse:beginEx()
+                            .typeId(nukleus:id("sse"))
+                            .pathInfo("/events/a8b7c6d5")
+                            .lastEventId("100")
+                            .build()}
 
 connected
 
