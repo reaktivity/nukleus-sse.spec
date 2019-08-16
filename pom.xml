@@ -48,11 +48,10 @@
     <junit.version>4.12</junit.version>
 
     <k3po.version>3.0.0-alpha-101</k3po.version>
-    <k3po.nukleus.ext.version>0.44</k3po.nukleus.ext.version>
+    <k3po.nukleus.ext.version>develop-SNAPSHOT</k3po.nukleus.ext.version>
 
     <nukleus.plugin.version>0.33</nukleus.plugin.version>
-    <nukleus.http.spec.version>0.74</nukleus.http.spec.version>
-    <nukleus.oauth.spec.version>develop-SNAPSHOT</nukleus.oauth.spec.version>
+    <nukleus.http.spec.version>develop-SNAPSHOT</nukleus.http.spec.version>
   </properties>
 
   <dependencies>
@@ -66,11 +65,6 @@
       <groupId>org.reaktivity</groupId>
       <artifactId>nukleus-http.spec</artifactId>
       <version>${nukleus.http.spec.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.reaktivity</groupId>
-      <artifactId>nukleus-oauth.spec</artifactId>
-      <version>${nukleus.oauth.spec.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -101,7 +95,7 @@
         <artifactId>nukleus-maven-plugin</artifactId>
         <version>${nukleus.plugin.version}</version>
         <configuration>
-          <scopeNames>core sse oauth</scopeNames>
+          <scopeNames>core sse</scopeNames>
           <packageName>org.reaktivity.specification.sse.internal.types</packageName>
         </configuration>
         <executions>
