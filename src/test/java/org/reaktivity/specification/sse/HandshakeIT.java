@@ -39,6 +39,30 @@ public class HandshakeIT
 
     @Test
     @Specification({
+        "${scripts}/cors.preflight/request",
+        "${scripts}/cors.preflight/response" })
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
+    public void shouldHandshakeWithCorsPreflight() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
+        "${scripts}/request.method.unsupported/request",
+        "${scripts}/request.method.unsupported/response" })
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
+    public void shouldFailHandshakeWhenRequestMethodUnsupported() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/request.header.last.event.id/request",
         "${scripts}/request.header.last.event.id/response" })
     @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
