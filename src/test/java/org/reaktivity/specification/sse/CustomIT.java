@@ -96,16 +96,4 @@ public class CustomIT
         k3po.notifyBarrier("ROUTED_SERVER");
         k3po.finish();
     }
-
-    @Test
-    @Specification({
-        "${scripts}/respond.to.challenge/request",
-        "${scripts}/respond.to.challenge/response" })
-    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
-    public void shouldRespondToChallenge() throws Exception
-    {
-        k3po.start();
-        k3po.notifyBarrier("ROUTED_SERVER");
-        k3po.finish();
-    }
 }
