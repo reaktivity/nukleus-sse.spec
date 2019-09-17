@@ -17,6 +17,7 @@
 property serverTransport "nukleus://streams/target#0"
 
 accept ${serverTransport}
+       option nukleus:capabilities ${core:capabilities("CHALLENGE")}
        option nukleus:window 8192
        option nukleus:transmission "half-duplex"
 accepted
@@ -32,12 +33,10 @@ read nukleus:begin.ext ${http:beginEx()
 
 connected
 
-write nukleus:begin.ext ${http:beginEx()
-                              .typeId(nukleus:id("http"))
-                              .header(":status", "200")
-                              .header("content-type", "text/event-stream")
-                              .build()}
+read nukleus:challenge ${http:challengeEx()
+                             .typeId(nukleus:id("http"))
+                             .header(":method", "POST")
+                             .header("content-type", "application/x-challenge-response")
+                             .build()}
+write "type:challenge\n\ndata:{\"method\": \"POST\", \"headers\": {\"content-type\": \"application/x-challenge-response\"}}\n\n"
 
-write nukleus:challenge
-read "type:challenge\n\n"
-write flush

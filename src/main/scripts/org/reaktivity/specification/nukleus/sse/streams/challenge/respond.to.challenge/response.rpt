@@ -17,6 +17,7 @@
 property serverTransport "nukleus://streams/target#0"
 
 accept ${serverTransport}
+       option nukleus:capabilities ${core:capabilities("CHALLENGE")}
        option nukleus:window 8192
        option nukleus:transmission "half-duplex"
 accepted
@@ -36,5 +37,4 @@ write nukleus:data.ext ${sse:dataEx()
                             .type(null)
                             .build()}
 
-read "type:challenge\n\n"
 write flush

@@ -16,7 +16,6 @@
 
 connect await ROUTED_SERVER
         "nukleus://streams/sse#0"
-        option nukleus:capabilities ${core:capabilities("CHALLENGE")}
         option nukleus:window 8192
         option nukleus:transmission "half-duplex"
 
@@ -31,11 +30,9 @@ write nukleus:begin.ext ${http:beginEx()
 
 connected
 
-read nukleus:begin.ext ${http:beginEx()
-                             .typeId(nukleus:id("http"))
-                             .header(":status", "200")
-                             .header("content-type", "text/event-stream")
-                             .build()}
-
-read nukleus:challenge
-write "type:challenge\n\n"
+write nukleus:challenge ${http:challengeEx()
+                              .typeId(nukleus:id("http"))
+                              .header(":method", "POST")
+                              .header("content-type", "application/x-challenge-response")
+                              .build()}
+read "type:challenge\n\ndata:{\"method\": \"POST\", \"headers\": {\"content-type\": \"application/x-challenge-response\"}}\n\n"
