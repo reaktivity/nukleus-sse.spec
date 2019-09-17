@@ -30,9 +30,14 @@ write nukleus:begin.ext ${http:beginEx()
 
 connected
 
+write close
+
 write nukleus:challenge ${http:challengeEx()
                               .typeId(nukleus:id("http"))
                               .header(":method", "POST")
                               .header("content-type", "application/x-challenge-response")
                               .build()}
-read "type:challenge\ndata:{\"method\": \"POST\", \"headers\": {\"content-type\": \"application/x-challenge-response\"}}\n\n"
+
+read "event:challenge\n"
+     "data:{\"method\":\"POST\",\"headers\":{\"content-type\":\"application/x-challenge-response\"}}\n"
+     "\n"

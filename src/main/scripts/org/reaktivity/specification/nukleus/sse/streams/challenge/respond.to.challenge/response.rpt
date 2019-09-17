@@ -30,11 +30,6 @@ read nukleus:begin.ext ${sse:beginEx()
 
 connected
 
-write nukleus:data.ext ${sse:dataEx()
-                            .typeId(nukleus:id("sse"))
-                            .timestamp(1519937168533)
-                            .id(null)
-                            .type(null)
-                            .build()}
+read closed
 
 write flush
