@@ -35,4 +35,4 @@ write nukleus:challenge ${http:challengeEx()
                               .header(":method", "POST")
                               .header("content-type", "application/x-challenge-response")
                               .build()}
-read "type:challenge\n\ndata:{\"method\": \"POST\", \"headers\": {\"content-type\": \"application/x-challenge-response\"}}\n\n"
+read "type:challenge\ndata:{\"method\": \"POST\", \"headers\": {\"content-type\": \"application/x-challenge-response\"}}\n\n"
