@@ -229,6 +229,11 @@
             <version>${reaktor.version}</version>
             <type>test-jar</type>
           </dependency>
+          <dependency>
+            <groupId>org.reaktivity</groupId>
+            <artifactId>reaktor</artifactId>
+            <version>${reaktor.version}</version>
+          </dependency>
         </dependencies>
       </plugin>
       <plugin>
