@@ -28,19 +28,19 @@ scope sse
         struct SseBeginEx extends core::stream::Extension
         {
             string16 pathInfo;
-            string lastEventId;
+            string8 lastEventId;
         }
 
         struct SseDataEx extends core::stream::Extension
         {
             int64 timestamp;
-            string id;
-            string type;
+            string8 id;
+            string8 type;
         }
 
         struct SseEndEx extends core::stream::Extension
         {
-            string id;
+            string8 id;
         }
     }
 }
