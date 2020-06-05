@@ -14,8 +14,6 @@
 # under the License.
 #
 
-property lastEventId260 ${http:randomBytesUTF8(260)}
-
 connect await ROUTED_SERVER
         "nukleus://streams/sse#0"
   option nukleus:window 8192
@@ -25,7 +23,7 @@ write nukleus:begin.ext ${http:beginEx()
                               .typeId(nukleus:id("http"))
                               .header(":scheme", "http")
                               .header(":method", "GET")
-                              .header(":path", "/events?lastEventId".append(lastEventId260))
+                              .header(":path", "/events?lastEventId=SNKUBUk2eDQ5uyAQNzdq4esgg82sl4vNaTePD9EhNgLMFPlx1nkH0B0eEx6J9GpBe5Tfa87ZQR8ERyjk2YqVIJ7hiOWufjaZR2Bu4lX427Rb8mujdGDgCEEBdtjzMcI4O7Vr0qKapsXNx9EjGPiiZkJIBQYcxoyl502sMARkLMiTVP1mj5XG9tF9k4kwKBO3NMiZUf9414i6cUj4GGdyPO6bOv6HqeYi2LXkhMJK8ZHPPufuxWXmxMML1EFNW2Uigohd")
                               .header(":authority", "localhost:8080")
                               .header("accept", "text/event-stream")
                               .build()}
