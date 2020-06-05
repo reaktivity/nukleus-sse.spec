@@ -96,4 +96,28 @@ public class IdIT
         k3po.notifyBarrier("ROUTED_SERVER");
         k3po.finish();
     }
+
+    @Test
+    @Specification({
+        "${scripts}/invalid.header.length/request",
+        "${scripts}/invalid.header.length/response" })
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
+    public void shouldRejectInvalidHeaderLength() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
+        "${scripts}/invalid.query.length/request",
+        "${scripts}/invalid.query.length/response" })
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
+    public void shouldRejectInvalidQueryLength() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
 }
