@@ -99,8 +99,8 @@ public class IdIT
 
     @Test
     @Specification({
-        "${scripts}/invalid.header.length/request",
-        "${scripts}/invalid.header.length/response" })
+        "${scripts}/reject.header.length.exceeding.255/request",
+        "${scripts}/reject.header.length.exceeding.255/response" })
     @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldRejectHeaderLengthExceeding255() throws Exception
     {
@@ -111,8 +111,8 @@ public class IdIT
 
     @Test
     @Specification({
-        "${scripts}/invalid.query.length/request",
-        "${scripts}/invalid.query.length/response" })
+        "${scripts}/reject.query.param.length.exceeding.255/request",
+        "${scripts}/reject.query.param.length.exceeding.255/response" })
     @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldRejectQueryParamLengthExceeding255() throws Exception
     {
