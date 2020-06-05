@@ -102,7 +102,7 @@ public class IdIT
         "${scripts}/invalid.header.length/request",
         "${scripts}/invalid.header.length/response" })
     @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
-    public void shouldRejectInvalidHeaderLength() throws Exception
+    public void shouldRejectHeaderLengthExceeding255() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
@@ -114,7 +114,7 @@ public class IdIT
         "${scripts}/invalid.query.length/request",
         "${scripts}/invalid.query.length/response" })
     @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
-    public void shouldRejectInvalidQueryLength() throws Exception
+    public void shouldRejectQueryParamLengthExceeding255() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");

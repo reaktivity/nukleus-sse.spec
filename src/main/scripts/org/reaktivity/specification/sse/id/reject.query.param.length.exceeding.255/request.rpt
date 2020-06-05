@@ -14,31 +14,27 @@
 # under the License.
 #
 
-property serverTransport "nukleus://streams/target#0"
-
-accept ${serverTransport}
+connect await ROUTED_SERVER
+        "nukleus://streams/sse#0"
   option nukleus:window 8192
   option nukleus:transmission "half-duplex"
-accepted
 
-read nukleus:begin.ext ${http:beginEx()
-                             .typeId(nukleus:id("http"))
-                             .header(":scheme", "http")
-                             .header(":method", "GET")
-                             .header(":path", "/events/a8b7c6d5")
-                             .header(":authority", "localhost:8080")
-                             .header("accept", "text/event-stream")
-                             .header("last-event-id", "SNKUBUk2eDQ5uyAQNzdq4esgg82sl4vNaTePD9EhNgLMFPlx1nkH0B0eEx6J9GpBe5Tfa87ZQR8ERyjk2YqVIJ7hiOWufjaZR2Bu4lX427Rb8mujdGDgCEEBdtjzMcI4O7Vr0qKapsXNx9EjGPiiZkJIBQYcxoyl502sMARkLMiTVP1mj5XG9tF9k4kwKBO3NMiZUf9414i6cUj4GGdyPO6bOv6HqeYi2LXkhMJK8ZHPPufuxWXmxMML1EFNW2Uigohd")
-                             .build()}
+write nukleus:begin.ext ${http:beginEx()
+                              .typeId(nukleus:id("http"))
+                              .header(":scheme", "http")
+                              .header(":method", "GET")
+                              .header(":path", "/events?lastEventId=abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefgh")
+                              .header(":authority", "localhost:8080")
+                              .header("accept", "text/event-stream")
+                              .build()}
 
 connected
 
-read closed
+write close
 
 write nukleus:begin.ext ${http:beginEx()
                               .typeId(nukleus:id("http"))
                               .header(":status", "400")
                               .build()}
-write flush
 
-write close
+read closed
