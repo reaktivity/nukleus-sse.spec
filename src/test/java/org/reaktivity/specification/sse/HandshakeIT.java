@@ -87,6 +87,18 @@ public class HandshakeIT
 
     @Test
     @Specification({
+        "${scripts}/request.header.last.event.id.overflow.multibyte/request",
+        "${scripts}/request.header.last.event.id.overflow.multibyte/response" })
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
+    public void shouldFailHandshakeWithRequestHeaderLastEventIdOverflowMultibyte() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/initial.comment/request",
         "${scripts}/initial.comment/response" })
     @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
