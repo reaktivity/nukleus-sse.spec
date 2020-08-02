@@ -87,6 +87,18 @@ public class HandshakeIT
 
     @Test
     @Specification({
+        "${scripts}/request.header.last.event.id.empty/request",
+        "${scripts}/request.header.last.event.id.empty/response" })
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
+    public void shouldHandshakeWithRequestHeaderLastEventIdEmpty() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/request.header.last.event.id.overflow/request",
         "${scripts}/request.header.last.event.id.overflow/response" })
     @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
