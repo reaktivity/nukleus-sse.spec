@@ -39,6 +39,18 @@ public class HandshakeIT
 
     @Test
     @Specification({
+        "${scripts}/connection.succeeded/request",
+        "${scripts}/connection.succeeded/response" })
+    @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")
+    public void shouldHandshake() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/last.event.id/request",
         "${scripts}/last.event.id/response" })
     @ScriptProperty("serverConnect \"nukleus://streams/sse#0\"")

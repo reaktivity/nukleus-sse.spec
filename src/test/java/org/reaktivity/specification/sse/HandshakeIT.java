@@ -39,6 +39,18 @@ public class HandshakeIT
 
     @Test
     @Specification({
+        "${scripts}/connection.succeeded/request",
+        "${scripts}/connection.succeeded/response" })
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
+    public void shouldHandshake() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
         "${scripts}/cors.preflight/request",
         "${scripts}/cors.preflight/response" })
     @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
@@ -115,6 +127,18 @@ public class HandshakeIT
         "${scripts}/request.parameter.last.event.id/response" })
     @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
     public void shouldHandshakeWithRequestParameterLastEventId() throws Exception
+    {
+        k3po.start();
+        k3po.notifyBarrier("ROUTED_SERVER");
+        k3po.finish();
+    }
+
+    @Test
+    @Specification({
+        "${scripts}/request.parameter.last.event.id.empty/request",
+        "${scripts}/request.parameter.last.event.id.empty/response" })
+    @ScriptProperty("serverTransport \"nukleus://streams/sse#0\"")
+    public void shouldHandshakeWithRequestParameterLastEventIdEmpty() throws Exception
     {
         k3po.start();
         k3po.notifyBarrier("ROUTED_SERVER");
