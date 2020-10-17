@@ -37,11 +37,11 @@ read closed
 
 write flush
 
-read nukleus:challenge ${http:challengeEx()
-                             .typeId(nukleus:id("http"))
-                             .header(":method", "POST")
-                             .header("content-type", "application/x-challenge-response")
-                             .build()}
+write advised nukleus:challenge ${http:challengeEx()
+                                      .typeId(nukleus:id("http"))
+                                      .header(":method", "POST")
+                                      .header("content-type", "application/x-challenge-response")
+                                      .build()}
 write "event:challenge\n"
       "data:{\"method\":\"POST\",\"headers\":{\"content-type\":\"application/x-challenge-response\"}}\n"
       "\n"
