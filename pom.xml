@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.reaktivity</groupId>
   <artifactId>nukleus-sse.spec</artifactId>
-  <version>0.53</version>
+  <version>0.54</version>
   <name>SSE Nukleus Specification</name>
   <description>SSE Nukleus Specification</description>
   <url>https://github.com/reaktivity/nukleus-sse.spec</url>
@@ -48,10 +48,10 @@
     <junit.version>4.13.1</junit.version>
 
     <k3po.version>3.1.0</k3po.version>
-    <reaktor.version>0.145</reaktor.version>
+    <reaktor.version>0.155</reaktor.version>
 
     <nukleus.plugin.version>0.64</nukleus.plugin.version>
-    <nukleus.http.spec.version>0.97</nukleus.http.spec.version>
+    <nukleus.http.spec.version>0.106</nukleus.http.spec.version>
   </properties>
 
   <dependencies>
@@ -141,10 +141,7 @@
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <sourceDirectories>
-            <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
-            <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
-          </sourceDirectories>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
         </configuration>
         <executions>
           <execution>
@@ -170,7 +167,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.5</version>
+        <version>0.8.6</version>
         <configuration>
           <excludes>
             <exclude>org/reaktivity/specification/sse/internal/types/**/*.class</exclude>
@@ -291,6 +288,9 @@
                     <requireReleaseDeps>
                       <message>No Snapshots Allowed!</message>
                     </requireReleaseDeps>
+                    <requireJavaVersion>
+                      <version>[9,10)</version>
+                    </requireJavaVersion>
                   </rules>
                 </configuration>
               </execution>
