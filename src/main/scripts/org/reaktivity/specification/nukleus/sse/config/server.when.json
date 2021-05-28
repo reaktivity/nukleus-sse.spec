@@ -6,15 +6,17 @@
             "type" : "sse",
             "kind": "server",
             "routes":
-            {
-                "exit": "app#0",
-                "when":
-                [
-                    {
-                        "path": "/events"
-                    }
-                ]
-            }
+            [
+                {
+                    "exit": "app#0",
+                    "when":
+                    [
+                        {
+                            "path": "/events/*"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
