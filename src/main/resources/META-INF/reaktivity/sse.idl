@@ -15,14 +15,6 @@
  */
 scope sse
 {
-    scope control
-    {
-        struct SseRouteEx
-        {
-            string16 pathInfo;
-        }
-    }
-
     scope stream
     {
         struct SseBeginEx extends core::stream::Extension
